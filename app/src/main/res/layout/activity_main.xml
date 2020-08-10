@@ -22,31 +22,33 @@
     android:textColor="#000000"
     android:gravity="center"
     android:layout_marginTop="40dp"/>
-
     <EditText
         android:id="@+id/txtusername"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="41dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="40dp"
-        android:backgroundTint="#797979"
+        android:background="@drawable/stroke"
+        android:drawablePadding="5dp"
         android:gravity="center"
-        android:hint="Masukkan Username"
-        android:textColorHint="#797979" />
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#2CA7E0" />
 
     <EditText
         android:id="@+id/txtpassword"
-        android:inputType="textPassword"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:hint="Masukkan Password"
+        android:layout_height="41dp"
         android:gravity="center"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
-        android:textColorHint="#797979"
-        android:backgroundTint="#797979"/>
+        android:drawablePadding="5dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#2CA7E0"
+        android:background="@drawable/stroke"/>
     <Button
         android:id="@+id/btnlogin"
         android:layout_width="320dp"
@@ -56,7 +58,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button"
         android:textColor="#FFFFFF"/>
 
 
