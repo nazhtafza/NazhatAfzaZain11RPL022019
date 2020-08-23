@@ -86,7 +86,14 @@
 
 </androidx.cardview.widget.CardView>
 
-
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belum punya akun?daftar disini!"
+        android:id="@+id/tvdaftar"
+        android:textColor="#fff"
+        android:textSize="15dp"/>
 
 
 </LinearLayout>
