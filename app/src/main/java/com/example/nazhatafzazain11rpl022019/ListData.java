@@ -86,6 +86,7 @@ public class ListData extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 modelku=new Model();
+                                modelku.setId(jsonObject.getInt("id"));
                                 modelku.setOriginal_title(jsonObject.getString("original_title"));
                                 modelku.setRelease_date(jsonObject.getString("release_date"));
                                 modelku.setOverview(jsonObject.getString("overview"));

@@ -57,5 +57,7 @@ public class Model {
     }
 
 
+    public void setId(int id) {
+    }
 }
 
