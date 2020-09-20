@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHold
         Glide.with(holder.itemView)
                 .load(dataList.get(position).getPoster_path())
                 .override(Target.SIZE_ORIGINAL)
+                .apply(new RequestOptions().override(600,200))
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.ivprofile);
 
