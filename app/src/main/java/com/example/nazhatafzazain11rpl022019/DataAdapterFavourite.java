@@ -16,27 +16,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHolder> {
-    private ArrayList<Model> dataList;
+public class DataAdapterFavourite extends RecyclerView.Adapter<DataAdapterFavourite.DatakuViewHolder> {
+    private ArrayList<ModelMovieRealm> dataList;
     private Callback callback;
     View viewku;
     int posku;
 
     interface Callback {
         void onClick(int position);
-
         void test();
     }
 
 
-    public DataAdapter(ArrayList<Model> dataList, Callback callback) {
+    public DataAdapterFavourite(ArrayList<ModelMovieRealm> dataList, Callback callback) {
         this.callback = callback;
         this.dataList = dataList;
-        Log.d("makanan", "MahasiswaAdapter: " + dataList.size() + "");
+        Log.d("makanan", "MahasiswaAdapter: "+dataList.size()+"");
     }
 
     @Override
@@ -48,31 +46,32 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHold
 
     @Override
     public void onBindViewHolder(final DatakuViewHolder holder, final int position) {
-        holder.txtNama.setText(dataList.get(position).getOriginal_title());
-        holder.txtNpm.setText(dataList.get(position).getRelease_date());
-        Log.d("makananku", "onBindViewHolder: " + dataList.get(position).getPoster_path());
+        holder.txtNama.setText(dataList.get(position).getJudul());
+        holder.txtNpm.setText(dataList.get(position).getReleaseDate());
+        Log.d("makananku", "onBindViewHolder: "+dataList.get(position).getPath());
+        //pakai glide karena untuk nampilkan data gambar dari URL / permission / graddle
         Glide.with(holder.itemView)
-                .load(dataList.get(position).getPoster_path())
-                .override(Target.SIZE_ORIGINAL)
-                .apply(new RequestOptions().override(600,200))
+                .load(dataList.get(position).getPath())
+                //.override(Target.SIZE_ORIGINAL)
+                .apply(new RequestOptions().override(600, 200))
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.ivprofile);
 
     }
 
     @Override
-    public int getItemCount(){
-    return (dataList != null) ? dataList.size() : 0;
+    public int getItemCount() {
+        return (dataList != null) ? dataList.size() : 0;
     }
 
-    public class DatakuViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    public class DatakuViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         private TextView txtNama, txtNpm;
         CardView card;
         ImageView ivprofile;
 
         public DatakuViewHolder(View itemView) {
             super(itemView);
-            viewku = itemView;
+            viewku=itemView;
             card = (CardView) itemView.findViewById(R.id.cardsaya);
             ivprofile = (ImageView) itemView.findViewById(R.id.ivprofil);
             txtNama = (TextView) itemView.findViewById(R.id.tvname);
@@ -91,13 +90,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHold
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             MenuItem Edit = menu.add(Menu.NONE, 1, 1, "Edit");
             MenuItem Delete = menu.add(Menu.NONE, 2, 2, "Delete");
-            posku = getAdapterPosition();
+            posku=getAdapterPosition();
             Edit.setOnMenuItemClickListener(onEditMenu);
             Delete.setOnMenuItemClickListener(onEditMenu);
         }
 
     }
-
     private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
@@ -105,7 +103,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHold
             switch (item.getItemId()) {
                 case 1:
                     //Do stuff
-                    Toast.makeText(viewku.getContext(), "" + posku, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(viewku.getContext(), ""+posku, Toast.LENGTH_SHORT).show();
                     break;
 
                 case 2:
@@ -116,4 +114,5 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DatakuViewHold
             return true;
         }
     };
+
 }
