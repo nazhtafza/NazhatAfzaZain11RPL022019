@@ -4,12 +4,13 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class ModelMovieRealm extends RealmObject {
+
     @PrimaryKey
-    private Integer id;
-    private String judul;
-    private String desc;
-    private String releaseDate;
-    private String path;
+     Integer id;
+     String judul;
+     String desc;
+     String releaseDate;
+     String path;
 
     public Integer getId() {
         return id;

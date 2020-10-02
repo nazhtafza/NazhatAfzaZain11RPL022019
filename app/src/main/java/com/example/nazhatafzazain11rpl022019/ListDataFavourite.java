@@ -19,12 +19,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 public class ListDataFavourite extends AppCompatActivity {
-
+    Realm realm;
+    RealmHelper realmHelper;
     private RecyclerView recyclerView;
     private DataAdapterFavourite adapter;
-    private ArrayList<ModelMovieRealm> DataArrayList; //kit add kan ke adapter
+    private List<ModelMovieRealm> DataArrayList; //kit add kan ke adapter
     private ImageView tambah_data;
 
     @Override
@@ -32,8 +36,29 @@ public class ListDataFavourite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
         recyclerView = (RecyclerView) findViewById(R.id.rvdata);
+        DataArrayList =new ArrayList<>();
+        //setup data
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
+        realmHelper = new RealmHelper(realm);
+        DataArrayList=realmHelper.getAllMovie();
+
+
+        adapter = new DataAdapterFavourite(DataArrayList, new DataAdapterFavourite.Callback() {
+            @Override
+            public void onClick(int position) {
+
+            }
+
+            @Override
+            public void test() {
+
+            }
+        });
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListDataFavourite.this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
 
     }
 
-
-}
