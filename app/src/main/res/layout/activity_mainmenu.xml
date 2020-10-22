@@ -18,40 +18,56 @@
         android:orientation="vertical"
         android:padding="12dp">
 
+        <ImageView
+            android:layout_width="154dp"
+            android:layout_height="136dp"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/miniondash" />
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dashboard"
             android:textColor="#fafafafa"
             android:textSize="30sp" />
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome,dude"
             android:textColor="#fafafa"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
+
     </LinearLayout>
-        <androidx.cardview.widget.CardView
+
+    <androidx.cardview.widget.CardView
             android:id="@+id/menu1"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_margin="20dp"
             android:layout_marginBottom="1dp"
-            app:cardElevation="30dp"
-            app:contentPadding="10dp">
+            app:cardElevation="20dp"
+            app:cardCornerRadius="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="144dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:layout_marginRight="100dp"
+                    android:src="@mipmap/minionmov" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="67dp"
+                        android:layout_marginTop="15dp"
                         android:elevation="3dp"
                         android:ellipsize="marquee"
                         android:focusable="true"
@@ -60,6 +76,7 @@
                         android:singleLine="true"
                         android:text="Movie"
                         android:textColor="#000000"
+                        android:textSize="25dp"
                         tools:targetApi="O" />
 
                 </RelativeLayout>
@@ -73,20 +90,27 @@
             android:layout_margin="20dp"
             android:layout_marginBottom="1dp"
             app:cardElevation="30dp"
-            app:contentPadding="10dp">
+            app:cardCornerRadius="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="144dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:layout_marginRight="100dp"
+                    android:src="@mipmap/minionfav" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="67dp"
+                        android:layout_marginTop="15dp"
                         android:elevation="3dp"
                         android:ellipsize="marquee"
                         android:focusable="true"
@@ -95,6 +119,7 @@
                         android:singleLine="true"
                         android:text="Favourite"
                         android:textColor="#000000"
+                        android:textSize="25dp"
                         tools:targetApi="O" />
 
                 </RelativeLayout>

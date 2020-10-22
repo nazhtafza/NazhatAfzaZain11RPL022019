@@ -13,7 +13,7 @@
     android:text="Judul"
     android:id="@+id/tvjudul"
     android:layout_gravity="center"
-    android:textSize="40dp"/>
+    android:textSize="25dp"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,16 +21,25 @@
         android:layout_gravity="center"
         android:id="@+id/ivposter"
         android:layout_marginTop="20dp" />
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="deskripsi"
-        android:textSize="14dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:id="@+id/tvdeskripsi"/>
+        android:layout_marginTop="6dp"
+        app:cardCornerRadius="15dp"
+        android:elevation="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="deskripsi"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:id="@+id/tvdeskripsi"/>
+    </androidx.cardview.widget.CardView>
+
     <Button
+        android:background="@drawable/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favourite"

@@ -13,7 +13,7 @@
         android:layout_height="140dp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
-        android:background="@mipmap/logosmk"/>
+        android:background="@mipmap/pathposter"/>
 <androidx.cardview.widget.CardView
     android:id="@+id/cvlogin"
     android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:gravity="center"
                 android:hint="Username"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#2CA7E0" />
+                android:textColorHint="#e833c4" />
 
             <EditText
                 android:id="@+id/txtpassword"
@@ -65,7 +65,7 @@
                 android:drawablePadding="5dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColorHint="#2CA7E0"
+                android:textColorHint="#e833c4"
                 android:background="@drawable/stroke"/>
             <Button
                 android:id="@+id/btnlogin"
