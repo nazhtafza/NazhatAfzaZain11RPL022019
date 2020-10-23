@@ -1,5 +1,7 @@
 package com.example.nazhatafzazain11rpl022019;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -20,11 +22,16 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 public class DataAdapterFavourite extends RecyclerView.Adapter<DataAdapterFavourite.DatakuViewHolder> {
     private List<ModelMovieRealm> dataList;
     private Callback callback;
     View viewku;
     int posku;
+    Realm realm;
+    RealmHelper realmHelper;
 
     interface Callback {
         void onClick(int position);
@@ -36,6 +43,9 @@ public class DataAdapterFavourite extends RecyclerView.Adapter<DataAdapterFavour
         this.callback = callback;
         this.dataList = dataList;
         Log.d("makanan", "MahasiswaAdapter: "+dataList.size()+"");
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
+        realmHelper = new RealmHelper(realm);
     }
 
     @Override
@@ -109,7 +119,24 @@ public class DataAdapterFavourite extends RecyclerView.Adapter<DataAdapterFavour
 
                 case 2:
                     //Do stuff
-
+                    DialogInterface.OnClickListener dialogClicklistener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //button diklik benar
+                                    realmHelper.delete(dataList.get(posku).getId());
+                                    notifyDataSetChanged();
+                                    break;
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //button diklik tidak
+                                    break;
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(viewku.getContext());
+                    builder.setMessage("Apakah anda yakin?").setPositiveButton("Yes",dialogClicklistener)
+                            .setNegativeButton("No",dialogClicklistener).show();
                     break;
             }
             return true;
