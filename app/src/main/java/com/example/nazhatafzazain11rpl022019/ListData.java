@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -26,6 +28,7 @@ public class ListData extends AppCompatActivity {
     private DataAdapter adapter;
     private ArrayList<Model> DataArrayList; //kit add kan ke adapter
     private ImageView tambah_data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class ListData extends AppCompatActivity {
 
     }
     void addDataOnline(){
+
         AndroidNetworking.get("https://api.themoviedb.org/3/movie/now_playing?api_key=b72f37f4c142a42a17e31b11ac25f3a1")
                .setTag("test")
                 .setPriority(Priority.LOW)
@@ -118,6 +122,7 @@ public class ListData extends AppCompatActivity {
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListData.this);
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setAdapter(adapter);
+
                         } catch ( JSONException e) {
                             e.printStackTrace();
                         }
