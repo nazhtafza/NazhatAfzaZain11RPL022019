@@ -16,12 +16,10 @@ public class Mainmenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
         menu1=(CardView)findViewById(R.id.menu1);
-        final LoadingDialog loadingDialog = new LoadingDialog(Mainmenu.this);
         menu1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ListData.class));
-                loadingDialog.startLoadingDialog();
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ListData.class));
             }
         });
         menu2 = (CardView)findViewById(R.id.menu2);

@@ -3,12 +3,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -23,11 +25,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ListData extends AppCompatActivity {
-
-    private RecyclerView recyclerView;
-    private DataAdapter adapter;
-    private ArrayList<Model> DataArrayList; //kit add kan ke adapter
-    private ImageView tambah_data;
+    TextView tvnodata;
+    ProgressDialog dialog;
+    RecyclerView recyclerView;
+    DataAdapter adapter;
+    ArrayList<Model> DataArrayList; //kit add kan ke adapter
+    ImageView tambah_data;
 
 
     @Override
@@ -35,6 +38,10 @@ public class ListData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
         recyclerView = (RecyclerView) findViewById(R.id.rvdata);
+        dialog = new ProgressDialog(ListData.this);
+        tvnodata = (TextView) findViewById(R.id.tvnodata);
+        tvnodata.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
         //addData();
         addDataOnline();
     }
@@ -72,6 +79,9 @@ public class ListData extends AppCompatActivity {
 
     }
     void addDataOnline(){
+        //loading disini
+        dialog.setMessage("sedang memproses data");
+        dialog.show();
 
         AndroidNetworking.get("https://api.themoviedb.org/3/movie/now_playing?api_key=b72f37f4c142a42a17e31b11ac25f3a1")
                .setTag("test")
@@ -122,9 +132,14 @@ public class ListData extends AppCompatActivity {
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListData.this);
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setAdapter(adapter);
-
+                            if (dialog.isShowing()) {
+                                dialog.dismiss();
+                            }
                         } catch ( JSONException e) {
                             e.printStackTrace();
+                            if (dialog.isShowing()) {
+                                dialog.dismiss();
+                            }
                         }
                     }
 

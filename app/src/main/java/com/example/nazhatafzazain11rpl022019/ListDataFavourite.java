@@ -2,7 +2,9 @@ package com.example.nazhatafzazain11rpl022019;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,46 +28,53 @@ import io.realm.RealmConfiguration;
 public class ListDataFavourite extends AppCompatActivity {
     Realm realm;
     RealmHelper realmHelper;
-    private RecyclerView recyclerView;
-    private DataAdapterFavourite adapter;
-    private List<ModelMovieRealm> DataArrayList; //kit add kan ke adapter
-    private ImageView tambah_data;
+    TextView tvnodata;
+    RecyclerView recyclerView;
+    DataAdapterFavourite adapter;
+    List<ModelMovieRealm> DataArrayList; //kit add kan ke adapter
+    ImageView tambah_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
         recyclerView = (RecyclerView) findViewById(R.id.rvdata);
-        DataArrayList =new ArrayList<>();
+        tvnodata = (TextView) findViewById(R.id.tvnodata);
+        DataArrayList = new ArrayList<>();
         //setup data
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
         realm = Realm.getInstance(configuration);
         realmHelper = new RealmHelper(realm);
-        DataArrayList=realmHelper.getAllMovie();
+        DataArrayList = realmHelper.getAllMovie();
 
 
-        adapter = new DataAdapterFavourite(DataArrayList, new DataAdapterFavourite.Callback() {
-            @Override
-            public void onClick(int position) {
-                Intent move = new Intent(getApplicationContext(),DetailFvourite.class);
-                move.putExtra("judul",DataArrayList.get(position).getJudul());
-                move.putExtra("path",DataArrayList.get(position).getPath());
-                move.putExtra("date",DataArrayList.get(position).getReleaseDate());
-                move.putExtra("deskripsi",DataArrayList.get(position).getDesc());
-                //tambahin path,desc,dll.
-                startActivity(move);
+        if (DataArrayList.size() == 0) {
+            tvnodata.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            tvnodata.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            adapter = new DataAdapterFavourite(DataArrayList, new DataAdapterFavourite.Callback() {
+                @Override
+                public void onClick(int position) {
+                    Intent move = new Intent(getApplicationContext(), DetailFvourite.class);
+                    move.putExtra("judul", DataArrayList.get(position).getJudul());
+                    move.putExtra("path", DataArrayList.get(position).getPath());
+                    move.putExtra("date", DataArrayList.get(position).getReleaseDate());
+                    move.putExtra("deskripsi", DataArrayList.get(position).getDesc());
+                    // di putextra yang lain
+                    startActivity(move);
+                }
 
-            }
+                @Override
+                public void test() {
 
-            @Override
-            public void test() {
-
-            }
-        });
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListDataFavourite.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+                }
+            });
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListDataFavourite.this);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(adapter);
+        }
     }
-
-    }
+}
 
